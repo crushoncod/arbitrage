@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.crushcod.arbitrage</groupId>
+    <artifactId>arbitrage</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>arbitrage</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.wildfly.tools>13.0.0.Final</version.wildfly.tools>
+        <org.wildfly.security.version>1.1.2.Final</org.wildfly.security.version>
+        <com.google.guava.version>18.0</com.google.guava.version>
+        <version.wildfly.hibernate>8.2.2.Final</version.wildfly.hibernate>
+        <version.com.fasterxml.jackson>2.9.7</version.com.fasterxml.jackson>
+
+        <picketbox.version>5.0.0.Final</picketbox.version>
+
+        <mongo.driver.version>3.8.1</mongo.driver.version>
+        <mongojack.version>2.9.4</mongojack.version>
+        <version.apache.commons.lang>3.8.1</version.apache.commons.lang>
+        <version.apache.commons.io>2.6</version.apache.commons.io>
+        <version.apache.commons.collections>4.2</version.apache.commons.collections>
+
+        <junit.version>4.12</junit.version>
+        <version.slf4j>1.7.7</version.slf4j>
+
+        <org.jboss.marshalling.version>2.0.6.Final</org.jboss.marshalling.version>
+        <org.wildfly.arquillian.version>2.1.1.Final</org.wildfly.arquillian.version>
+        <arquillian.version>1.4.1.Final</arquillian.version> <!-- the BOM is not working properly  -->
+
+        <!-- MAVEN and plugins versions-->
+        <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
+        <maven.release.version>2.3.2</maven.release.version>
+        <version.surefire.plugin>2.22.1</version.surefire.plugin>
+        <version.compiler.plugin>3.8.0</version.compiler.plugin>
+        <version.scm.plugin>1.11.1</version.scm.plugin>
+        <version.resource.plugin>3.0.1</version.resource.plugin>
+        <version.war.plugin>3.2.2</version.war.plugin>
+        <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+        <version.maven.clean.plugin>3.1.0</version.maven.clean.plugin>
+        <version.maven.install.plugin>2.5.2</version.maven.install.plugin>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+
+    </properties>
+
+    <modules>
+        <module>arbitrage-core</module>
+        <module>arbitrage-updater</module>
+    </modules>
+
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/peacy/arbitrage.git</developerConnection>
+        <connection>scm:git:https://github.com/peacy/arbitrage.git</connection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <artifactId>arbitrage-updater</artifactId>
+                <groupId>com.crushcod</groupId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>arbitrage-core</artifactId>
+                <groupId>com.crushcod</groupId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- BOM -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-javaee7</artifactId>
+                <version>${version.wildfly.tools}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+                <version>${version.wildfly.hibernate}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>br.com.quicard</groupId>
+                <artifactId>floating-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-security-manager</artifactId>
+                <version>${org.wildfly.security.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${com.google.guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.infinispan</groupId>
+                <artifactId>infinispan-core</artifactId>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- JavaEE 7 Batch Processing -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.batch</groupId>
+                <artifactId>jboss-batch-api_1.0_spec</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jberet</groupId>
+                <artifactId>jberet-core</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jberet</groupId>
+                <artifactId>jberet-support</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.beanio</groupId>
+                <artifactId>beanio</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm</artifactId>
+                <version>${version.org.ow2.asm}</version>
+            </dependency>
+
+            <!-- Jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <scope>provided</scope>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <scope>provided</scope>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                <artifactId>jackson-jaxrs-json-provider</artifactId>
+                <version>${version.com.fasterxml.jackson}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <scope>provided</scope>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${version.apache.commons.lang}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${version.apache.commons.io}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${version.apache.commons.collections}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <scope>provided</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.jboss</groupId>
+                <artifactId>jboss-vfs</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo.driver.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>bson</artifactId>
+                <version>${mongo.driver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongojack</groupId>
+                <artifactId>mongojack</artifactId>
+                <version>${mongojack.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-cdi</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-sjms</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jackson</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.spec.javax.websocket</groupId>
+                <artifactId>jboss-websocket-api_1.1_spec</artifactId>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.spec.javax.json</groupId>
+                <artifactId>jboss-json-api_1.1_spec</artifactId>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>transport</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.picketbox</groupId>
+                <artifactId>picketbox</artifactId>
+                <version>${picketbox.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.slf4j}</version>
+                <scope>provided</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-container</artifactId>
+                <version>${arquillian.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.protocol</groupId>
+                <artifactId>arquillian-protocol-servlet</artifactId>
+                <version>${arquillian.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-managed</artifactId>
+                <version>${org.wildfly.arquillian.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling</artifactId>
+                <version>${org.jboss.marshalling.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson2-provider</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Import the CDI API -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Import the Common Annotations API (JSR-250) -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Import the EJB API, we use provided scope as the API is included in
+            JEE7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.jms</groupId>
+            <artifactId>jboss-jms-api_2.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-validator-provider-11</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Multipart support -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-multipart-provider</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-managed</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+
+
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.resource.plugin}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>${version.scm.plugin}</version>
+                </plugin>
+
+
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${version.maven.clean.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.surefire.plugin}</version>
+                    <configuration>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${version.maven.install.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven.deploy.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.war.plugin}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>external.atlassian.jgitflow</groupId>
+                    <artifactId>jgitflow-maven-plugin</artifactId>
+                    <version>1.0-m5.1</version>
+                    <configuration>
+                        <flowInitContext>
+                            <masterBranchName>master</masterBranchName>
+                            <developBranchName>development</developBranchName>
+                            <featureBranchPrefix>feature-</featureBranchPrefix>
+                            <releaseBranchPrefix>release-</releaseBranchPrefix>
+                            <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                            <versionTagPrefix>v-</versionTagPrefix>
+                        </flowInitContext>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>JBoss Repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>mvnrepository</id>
+            <url>https://mvnrepository.com/</url>
+        </repository>
+    </repositories>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${version.surefire.plugin}</version>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>arq-wildfly-managed-updater</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>${org.wildfly.arquillian.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.wildfly</groupId>
+                                            <artifactId>wildfly-dist</artifactId>
+                                            <version>${version.wildfly.tools}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>arbitrage</artifactId>
+        <groupId>com.crushcod</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../arbitrage-core/pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.crushcod</groupId>
+    <artifactId>arbitrage-core</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <url>http://www.crushcod.com/arbitrage</url>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <finalName>arbitrage-updater</finalName>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                </plugin>
+                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+</project>
