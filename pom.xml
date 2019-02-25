@@ -17,7 +17,7 @@
         <org.wildfly.security.version>1.1.2.Final</org.wildfly.security.version>
         <com.google.guava.version>18.0</com.google.guava.version>
         <version.wildfly.hibernate>8.2.2.Final</version.wildfly.hibernate>
-        <version.com.fasterxml.jackson>2.9.7</version.com.fasterxml.jackson>
+        <version.com.fasterxml.jackson>2.9.8</version.com.fasterxml.jackson>
 
         <picketbox.version>5.0.0.Final</picketbox.version>
 
