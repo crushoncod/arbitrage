@@ -34,19 +34,19 @@
         <org.wildfly.arquillian.version>2.1.1.Final</org.wildfly.arquillian.version>
         <arquillian.version>1.4.1.Final</arquillian.version> <!-- the BOM is not working properly  -->
 
-        <!-- MAVEN and plugins versions-->
-        <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
-        <maven.release.version>2.3.2</maven.release.version>
-        <version.surefire.plugin>2.22.1</version.surefire.plugin>
-        <version.compiler.plugin>3.8.0</version.compiler.plugin>
-        <version.scm.plugin>1.11.1</version.scm.plugin>
-        <version.resource.plugin>3.0.1</version.resource.plugin>
-        <version.war.plugin>3.2.2</version.war.plugin>
-        <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
-        <version.maven.clean.plugin>3.1.0</version.maven.clean.plugin>
-        <version.maven.install.plugin>2.5.2</version.maven.install.plugin>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
+            <!-- MAVEN and plugins versions-->
+            <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
+            <maven.release.version>2.3.2</maven.release.version>
+            <version.surefire.plugin>2.22.1</version.surefire.plugin>
+            <version.compiler.plugin>3.8.0</version.compiler.plugin>
+            <version.scm.plugin>1.11.1</version.scm.plugin>
+            <version.resource.plugin>3.0.1</version.resource.plugin>
+            <version.war.plugin>3.2.2</version.war.plugin>
+            <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+            <version.maven.clean.plugin>3.1.0</version.maven.clean.plugin>
+            <version.maven.install.plugin>2.5.2</version.maven.install.plugin>
+            <maven.compiler.target>1.8</maven.compiler.target>
+            <maven.compiler.source>1.8</maven.compiler.source>
 
 
     </properties>
