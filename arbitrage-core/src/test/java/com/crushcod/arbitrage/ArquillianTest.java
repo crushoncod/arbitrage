@@ -9,18 +9,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(Arquillian.class)
-public class ArquillianTest {
+    @RunWith(Arquillian.class)
+    public class ArquillianTest {
 
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage("com.crushcod.arbitrage")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+        @Deployment
+        public static JavaArchive createDeployment() {
+            return ShrinkWrap.create(JavaArchive.class)
+                    .addPackage("com.crushcod.arbitrage")
+                    .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        }
 
-    @Test
-    public void test() {
-        Assert.fail("Not yet implemented");
-    }
+        @Test
+        public void test() {
+            Assert.fail("Not yet implemented");
+        }
 }
